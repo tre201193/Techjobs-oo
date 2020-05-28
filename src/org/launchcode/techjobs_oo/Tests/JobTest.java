@@ -37,7 +37,38 @@ public class JobTest {
     public void testJobsForEquality() {
         Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         Job testJob2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        assertNotEquals(testJob, testJob2);
+        assertFalse(testJob.equals(testJob2));
     }
-    
+
+    @Test
+    public void testToStringForBlankLines() {
+        Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertEquals('\n', job.toString().charAt(0));
+        assertEquals('\n', job.toString().charAt(job.toString().length() - 1));
+    }
+
+    @Test
+    public void testToStringForLabelsAndFields() {
+        Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertEquals("\nID: " + job.getId()+ "\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n", job.toString());
+    }
+
+    @Test
+    public void testEmptyFields() {
+        Job job = new Job("Product tester", new Employer(), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertEquals("\nID: " + job.getId()+ "\nName: Product tester\nEmployer: Data not available\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n", job.toString());
+    }
+
+    @Test
+    public void testAllEmptyFields() {
+        Job job = new Job("Product tester", new Employer(), new Location(), new PositionType(), new CoreCompetency());
+        assertEquals("\nID: " + job.getId()+ "\nName: Product tester\nEmployer: Data not available\nLocation: Data not available\nPosition Type: Data not available\nCore Competency: Data not available\n", job.toString());
+    }
+
+    @Test
+    public void testOnlyIdField() {
+        Job jobTest = new Job();
+        assertEquals("OOPS! This job does not seem to exist.", jobTest.toString());
+    }
+
 }
