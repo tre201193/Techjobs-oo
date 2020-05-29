@@ -53,22 +53,31 @@ public class JobTest {
         assertEquals("\nID: " + job.getId()+ "\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n", job.toString());
     }
 
-    @Test
-    public void testEmptyFields() {
-        Job job = new Job("Product tester", new Employer(), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        assertEquals("\nID: " + job.getId()+ "\nName: Product tester\nEmployer: Data not available\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n", job.toString());
-    }
+// old tests for testing null values rather than empty string values
+//    @Test
+//    public void testEmptyFields() {
+//        Job job = new Job("Product tester", new Employer(), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+//        assertEquals("\nID: " + job.getId()+ "\nName: Product tester\nEmployer: Data not available\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Persistence\n", job.toString());
+//    }
+//
+//    @Test
+//    public void testAllEmptyFields() {
+//        Job job = new Job("Product tester", new Employer(), new Location(), new PositionType(), new CoreCompetency());
+//        assertEquals("\nID: " + job.getId()+ "\nName: Product tester\nEmployer: Data not available\nLocation: Data not available\nPosition Type: Data not available\nCore Competency: Data not available\n", job.toString());
+//    }
+//
+//    @Test
+ //   public void testOnlyIdField() {
+//        Job jobTest = new Job();
+ //       assertEquals("OOPS! This job does not seem to exist.", jobTest.toString());
+//    }
+      @Test
+      public void testIdIsOnlyFieldNotEmpty() {
+        Job job = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        assertEquals("OOPS! This job does not seem to exist.", job.toString());
 
-    @Test
-    public void testAllEmptyFields() {
-        Job job = new Job("Product tester", new Employer(), new Location(), new PositionType(), new CoreCompetency());
-        assertEquals("\nID: " + job.getId()+ "\nName: Product tester\nEmployer: Data not available\nLocation: Data not available\nPosition Type: Data not available\nCore Competency: Data not available\n", job.toString());
-    }
+      }
 
-    @Test
-    public void testOnlyIdField() {
-        Job jobTest = new Job();
-        assertEquals("OOPS! This job does not seem to exist.", jobTest.toString());
-    }
 
 }
+

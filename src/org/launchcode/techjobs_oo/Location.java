@@ -12,7 +12,7 @@ public class Location extends JobField {
     //  constructor should also call the empty constructor in order to initialize the 'id' field.
 
     public Location(String aValue) {
-        super(avalue);
+        super(aValue);
     }
     // Custom toString, equals, and hashCode methods:
 
